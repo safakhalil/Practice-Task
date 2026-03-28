@@ -3,9 +3,11 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route("/")
-
 def homePage():
-    return render_template("home.html")
+    subjects = ["English", "Science", "Math"]
+    fruits = ["Apple", "Banana", "Mango", "Orange", "Cherry"]
+    nums = [1, 2, 3, 4, 5]
+    return render_template("home.html", subjects=subjects, fruits=fruits, nums=nums)
 
 @app.route("/result", methods=["POST"])
 
