@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -65,5 +66,102 @@
    <h1>Delivery Status</h1>
    <p>{{delivery}}</p>
    <p>{{delivery_message}}</p>
+=======
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservation Confirmed — Aurelian</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="wordmark">Aurelian</span>
+
+    <div class="seal">
+      <div class="seal-ring"></div>
+      <div class="seal-inner">✦</div>
+    </div>
+
+    <h1 class="page-title">Reservation<br><em>Confirmed</em></h1>
+    <p class="page-sub">Your stay has been secured. A confirmation awaits.</p>
+  </div>
+
+  <!-- Main confirmation card -->
+  <div class="card">
+    <div class="card-section-label">Guest & Stay Details</div>
+
+    <div class="detail-grid">
+
+      <div class="detail-item">
+        <span class="detail-label">Guest Name</span>
+        <span class="detail-value">{{ name }}</span>
+    </div>
+
+      <div class="detail-item">
+        <span class="detail-label">Room Category</span>
+        <span class="detail-value">{{ type | capitalize }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="detail-label">Duration</span>
+        <span class="detail-value">{{ num }} nights</span>
+
+      </div>
+
+      <div class="detail-item">
+        <span class="detail-label">Payment Method</span>
+        <span class="detail-value">{{ method | capitalize }}</span>
+      </div>
+
+      <div class="detail-total">
+        <span class="detail-label">Total Amount</span>
+        <span class="detail-value">PKR {{ "{:,.0f}".format(total) }}</span>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Conditional badges -->
+  <div class="badges">
+
+    <div class="badge">
+      <span class="badge-icon">◈</span>
+      Long Stay Discount Applied
+    </div>
+
+    <div class="badge">
+      <span class="badge-icon">✦</span>
+      Luxury Suite Selected
+    </div>
+
+    <div class="badge">
+      <span class="badge-icon">▣</span>
+      Premium Booking
+    </div>
+
+  </div>
+
+  <!-- Closing message -->
+  <div class="thank-you">
+    <p>
+      Dear <strong>{{ name }}</strong>, we are honoured to welcome you.<br>
+      Our concierge team will reach out within the hour to attend to every detail of your arrival.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-divider"><span>✦</span></div>
+    <p>Aurelian Grand Collection &nbsp;·&nbsp; Est. 1891 &nbsp;·&nbsp; All rights reserved</p>
+    <a href="/" class="back-link">← Return to Reservations</a>
+  </div>
+
+</div>
+
+>>>>>>> 001b93e (Initial commit: Flask practice task app)
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -81,5 +82,282 @@
     <br><br>
     <button type="submit">Submit</button>
     </form>
+=======
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelian — Reserve Your Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+
+</head>
+<body>
+
+<div class="success-toast" id="toast">
+  <span>Reservation Received</span>
+  <p>We'll be in touch shortly, dear guest.</p>
+</div>
+
+<div class="wrapper">
+
+  <!-- ── LEFT HERO ─────────────────────────────── -->
+  <div class="hero">
+    <!-- High-res suite image via Unsplash -->
+    <img class="hero-img"
+      src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90&auto=format&fit=crop"
+      alt="Aurelian Grand Suite"
+      loading="eager"
+    >
+    <div class="hero-overlay"></div>
+
+    <div class="hero-brand">
+      <span class="hero-wordmark">Aurelian</span>
+      <span class="hero-tagline">Grand Collection · Est. 1891</span>
+    </div>
+
+    <div class="hero-caption">
+      <div class="hero-divider"></div>
+      <h2>The Grand<br><em style="font-style:italic; color: var(--gold-pale);">Belvedere Suite</em></h2>
+      <p>Floor 14 · Panoramic Views · 142 m²</p>
+    </div>
+  </div>
+
+  <!-- ── RIGHT PANEL ────────────────────────────── -->
+  <div class="panel">
+    <div class="panel-inner">
+
+      <p class="eyebrow">Reserve Your Stay</p>
+      <h1 class="panel-title">An Invitation<br>to <em>Excellence</em></h1>
+      <p class="panel-sub">Every detail attended to. Every wish anticipated. Complete the form below and our concierge will confirm your reservation within the hour.</p>
+
+      <div class="gold-rule">
+        <span>Guest Details</span>
+      </div>
+
+      <form id="bookingForm" action="/result" method="POST" novalidate>
+
+        <!-- Name -->
+        <div class="field-group">
+          <div class="field">
+            <input type="text" name="name" id="name" placeholder="x" required autocomplete="name">
+            <label for="name">Full Name</label>
+          </div>
+        </div>
+
+        <!-- Email + Phone -->
+        <div class="field-group field-row">
+          <div class="field">
+            <input type="email" name="email" id="email" placeholder="x" autocomplete="email">
+            <label for="email">Email Address</label>
+          </div>
+          <div class="field">
+            <input type="tel" name="phone" id="phone" placeholder="x" autocomplete="tel">
+            <label for="phone">Phone Number</label>
+          </div>
+        </div>
+
+        <div class="gold-rule" style="margin-top: 2rem;">
+          <span>Reservation Details</span>
+        </div>
+
+        <!-- Room Type -->
+        <div class="field-group">
+          <div class="field">
+            <select name="type" id="roomType" required onchange="this.classList.add('has-value'); updateBar();">
+              <option value="" disabled selected></option>
+              <option value="classic">Classic Room</option>
+              <option value="deluxe">Deluxe Room</option>
+              <option value="junior">Junior Suite</option>
+              <option value="grand">Grand Suite</option>
+              <option value="penthouse">Penthouse</option>
+            </select>
+            <label for="roomType">Room Category</label>
+          </div>
+        </div>
+
+        <!-- Dates -->
+        <div class="field-group field-row">
+          <div class="field">
+            <input type="date" name="checkin" id="checkin" placeholder="x" required onchange="updateBar()">
+            <label for="checkin">Arrival Date</label>
+          </div>
+          <div class="field">
+            <input type="date" name="checkout" id="checkout" placeholder="x" required onchange="updateBar()">
+            <label for="checkout">Departure Date</label>
+          </div>
+        </div>
+
+        <!-- Nights + Guests -->
+        <div class="field-group field-row">
+          <div class="field">
+            <input type="number" name="num" id="nights" placeholder="x" min="1" max="90" onchange="updateBar()">
+            <label for="nights">Number of Nights</label>
+          </div>
+          <div class="field">
+            <select name="guests" id="guests" onchange="this.classList.add('has-value');">
+              <option value="" disabled selected></option>
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+            </select>
+            <label for="guests">Guests</label>
+          </div>
+        </div>
+
+        <div class="gold-rule" style="margin-top: 2rem;">
+          <span>Payment Method</span>
+        </div>
+
+        <!-- Payment -->
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="method" id="pay-cash" value="cash">
+            <label for="pay-cash">
+              Cash
+              <span class="radio-icon">◈</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="method" id="pay-card" value="card" checked>
+            <label for="pay-card">
+              Credit / Debit Card
+              <span class="radio-icon">▣</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="method" id="pay-wire" value="wire">
+            <label for="pay-wire">
+              Bank Transfer
+              <span class="radio-icon">⊟</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Special Requests -->
+        <div class="field-group">
+          <div class="field">
+            <textarea name="requests" id="requests" placeholder="x" rows="3"></textarea>
+            <label for="requests">Special Requests (optional)</label>
+          </div>
+        </div>
+
+        <!-- Perks -->
+        <div class="gold-rule" style="margin-top: 0.5rem;">
+          <span>Included Privileges</span>
+        </div>
+
+        <div class="perks">
+          <div class="perk">
+            <div class="perk-dot"></div>
+            <span class="perk-text">Private check-in with dedicated butler</span>
+          </div>
+          <div class="perk">
+            <div class="perk-dot"></div>
+            <span class="perk-text">Daily à la carte breakfast for two</span>
+          </div>
+          <div class="perk">
+            <div class="perk-dot"></div>
+            <span class="perk-text">Complimentary airport transfer</span>
+          </div>
+          <div class="perk">
+            <div class="perk-dot"></div>
+            <span class="perk-text">24-hour concierge service</span>
+          </div>
+          <div class="perk">
+            <div class="perk-dot"></div>
+            <span class="perk-text">Evening turndown with amenities</span>
+          </div>
+          <div class="perk">
+            <div class="perk-dot"></div>
+            <span class="perk-text">Complimentary spa access</span>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ── STICKY AVAILABILITY BAR ──────────────────── -->
+<div class="availability-bar" id="availBar">
+  <div class="bar-summary">
+    <div class="bar-item">
+      <span class="bar-item-label">Room</span>
+      <span class="bar-item-value" id="bar-room">—</span>
+    </div>
+    <div class="bar-sep"></div>
+    <div class="bar-item">
+      <span class="bar-item-label">Arrival</span>
+      <span class="bar-item-value" id="bar-in">—</span>
+    </div>
+    <div class="bar-sep"></div>
+    <div class="bar-item">
+      <span class="bar-item-label">Nights</span>
+      <span class="bar-item-value" id="bar-nights">—</span>
+    </div>
+  </div>
+  <button class="bar-btn" onclick="submitForm()">Check Availability</button>
+
+</div>
+
+<script>
+  const roomLabels = {
+    classic: 'Classic Room',
+    deluxe: 'Deluxe Room',
+    junior: 'Junior Suite',
+    grand: 'Grand Suite',
+    penthouse: 'Penthouse'
+  };
+
+  function updateBar() {
+    const room = document.getElementById('roomType').value;
+    const cin  = document.getElementById('checkin').value;
+    const n    = document.getElementById('nights').value;
+
+    document.getElementById('bar-room').textContent    = room ? roomLabels[room] : '—';
+    document.getElementById('bar-nights').textContent  = n || '—';
+
+    if (cin) {
+      const d = new Date(cin);
+      document.getElementById('bar-in').textContent = d.toLocaleDateString('en-GB', {day:'numeric', month:'short'});
+    } else {
+      document.getElementById('bar-in').textContent = '—';
+    }
+  }
+
+  function submitForm() {
+  const name = document.getElementById('name').value.trim();
+  const room = document.getElementById('roomType').value;
+  const cin  = document.getElementById('checkin').value;
+
+  console.log('name:', name);
+  console.log('room:', room);
+  console.log('cin:', cin);
+
+  if (!name || !room || !cin) {
+    alert('Missing: ' + (!name ? 'Name ' : '') + (!room ? 'Room ' : '') + (!cin ? 'Date' : ''));
+    document.getElementById('name').focus();
+    return;
+  }
+
+  document.getElementById('bookingForm').submit();
+}
+
+  // Auto-fill nights from date diff
+  document.getElementById('checkout').addEventListener('change', function() {
+    const cin  = new Date(document.getElementById('checkin').value);
+    const cout = new Date(this.value);
+    if (cin && cout && cout > cin) {
+      const diff = Math.round((cout - cin) / 86400000);
+      document.getElementById('nights').value = diff;
+      updateBar();
+    }
+  });
+</script>
+
+>>>>>>> 001b93e (Initial commit: Flask practice task app)
 </body>
 </html>
